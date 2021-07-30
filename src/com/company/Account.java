@@ -3,10 +3,20 @@ package com.company;
 public class Account {
     private String accNo;
     private long accBalance;
+    private String password;
 
-    public Account(String accNo, long accBalance) {
+    public Account(String accNo, long accBalance, String password) {
         this.accNo = accNo;
         this.accBalance = accBalance;
+        this.password = password;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getAccNo() {
@@ -25,12 +35,19 @@ public class Account {
         this.accBalance = accBalance;
     }
 
-    public void deductBalance(Long amount){
-        this.accBalance=this.accBalance-amount;
+    public Boolean withDraw(Long amount){
+        if (this.accBalance < amount){
+            return false;
+        }
+        else{
+            this.accBalance=accBalance-amount;
+            return true;
+        }
     }
 
-    public void increaseBalance(Long amount){
+    public Boolean deposit(Long amount){
         this.accBalance=this.accBalance+amount;
+        return true;
     }
 
     public Long checkBalance(){
